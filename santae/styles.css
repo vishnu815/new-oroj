@@ -1,0 +1,555 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('assets/house.jpg') no-repeat center center fixed; /* Correct relative path */
+    background-size: cover; /* Ensures the image covers the entire viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Snowman Structure */
+.snowman {
+    position:absolute;
+    bottom: -180px;
+    left:470px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Snowballs */
+.snowball {
+    background: #FFFFFF;
+    border: 3px solid #D9D9D9;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.large {
+    width: 150px;
+    height: 150px;
+    margin-top:-10px;
+}
+.green-button {
+    position: absolute;
+    top: 180px; /* Adjust to position the button vertically */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px; /* Width of the button */
+    height: 30px; /* Height of the button */
+    background: green; /* Button color */
+    border-radius: 50%; /* Makes the button circular */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Optional: Adds depth */
+}
+
+
+.medium {
+    width: 100px;
+    height: 100px;
+    margin-top: -40px; /* Adjust overlap */
+}
+
+.small {
+    position: absolute;
+    top: -28px; /* Adjust this to position the face */
+    left: 25%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    background: #FFFFFF;
+    border: 3px solid #D9D9D9;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hat */
+.hat {
+    position: absolute;
+    top: -70px; /* Position above the small snowball */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent; /* Left slant of the cone */
+    border-right: 40px solid transparent; /* Right slant of the cone */
+    border-bottom: 70px solid red; /* Cone color */
+}
+
+.hat::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: -15px;
+    width: 30px;
+    height: 10px;
+    background: white;
+    border-radius: 50%; /* Makes the pom-pom round */
+}
+
+/* Buttons */
+.buttons {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between buttons */
+    top: 60px; /* Adjust this to position the buttons vertically */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.button {
+    width: 15px;
+    height: 15px;
+    background: green;
+    border-radius: 50%; /* Makes the buttons circular */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add a slight shadow for depth */
+}
+
+
+
+
+
+/* Face */
+.face {
+    position: relative;
+}
+
+.face .eye {
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.face .eye.left {
+    left: 15px;
+    top: 20px;
+}
+
+.face .eye.right {
+    left: 43px;
+    top: 20px;
+}
+
+.face .nose {
+    width: 10px;
+    height: 15px;
+    background: orange;
+    position: absolute;
+    top: 30px;
+    left: 35px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+}
+
+.face .mouth {
+    width: 40px;
+    height: 10px; /* Adjust the height for a larger smile curve */
+    background: transparent;
+    border: 3px solid black;
+    border-radius: 70%; /* Creates the curve */
+    border-top: none; /* Removes the top part of the circle */
+    position: absolute;
+    top: 50px; /* Adjust to position the mouth correctly */
+    left: 50%;
+    transform: translateX(-50%);
+}
+.arm {
+    position: absolute;
+    width: 50px; /* Length of the arm */
+    height: 5px; /* Thickness of the arm */
+    background: #8B4513; /* Arm color (brown) */
+    border-radius: 3px; /* Rounded edges for a more natural look */
+}
+
+.arm.left {
+    top: 35%; /* Adjust to position relative to the medium snowball */
+    left: -20px; /* Move to the left side */
+    transform: translateY(-50%) rotate(-30deg); /* Adjust the angle */
+}
+
+.arm.right {
+    top: 35%; /* Adjust to position relative to the medium snowball */
+    right: -20px; /* Move to the right side */
+    transform: translateY(-50%) rotate(30deg); /* Adjust the angle */
+}
+body{
+    margin: 0%;
+    padding: 0%;
+    background: radial-gradient(circle at 50% 55%, hsl(212, 55%, 53%), hsl(212, 55%, 43%), hsl(212, 55%, 23%));
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 90% 100%;
+    overflow: hidden;
+}
+#tree{
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    margin: 0 auto;
+    padding-top: 10px;
+    position: absolute;
+    bottom: 0px;
+    right: -500px;
+}
+#canvas{
+    position: absolute;
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+}
+.red{
+    fill: #aa1231;
+    -webkit-animation: 0.6s red-flash ease-in-out infinite;
+    animation: 0.6s red-flash ease-in-out infinite;
+}
+@-webkit-keyframes red-flash{
+    40%{
+        fill: #ea385c;
+    }
+    80%{
+        fill: #aa1231;
+    }
+}
+@keyframes red-flash{
+    40%{
+        fill: #ea385c;
+    }
+    80%{
+        fill: #aa1231;
+    }
+}
+.gold-lt{
+    fill: #c1881c;
+    -webkit-animation: 0.6s gold-lt-flash ease-in-out infinite;
+    animation: 0.6s gold-lt-flash ease-in-out infinite;
+}
+@-webkit-keyframes gold-lt-flash{
+    40%{
+        fill: #e7b75c;
+    }
+    80%{
+        fill: #c1881c;
+    }
+}
+@keyframes gold-lt-flash{
+    40%{
+        fill: #e7b75c;
+    }
+    80%{
+        fill: #c1881c;
+    }
+}
+.blue-lt{
+    fill: #1f3e64;
+    -webkit-animation: 0.6s blue-lt-flash ease-in-out infinite;
+    animation: 0.6s blue-lt-flash ease-in-out infinite;
+}
+@-webkit-keyframes blue-lt-flash{
+    40%{
+        fill: #386fb1;
+    }
+    80%{
+        fill: #1f3e64;
+    }
+}
+@keyframes blue-lt-flash{
+    40%{
+        fill: #386fb1;
+    }
+    80%{
+        fill: #1f3e64;
+    }
+}
+.blue-dk{
+    fill: #0f1f2f;
+    -webkit-animation: 0.6s blue-dk-flash ease-in-out infinite;
+    animation: 0.6s blue-dk-flash ease-in-out infinite;
+}
+@-webkit-keyframes blue-dk-flash{
+    40%{
+        fill: #28527c;
+    }
+    80%{
+        fill: #0f1f2f;
+    }
+}
+@keyframes blue-dk-flash{
+    40%{
+        fill: #28527c;
+    }
+    80%{
+        fill: #0f1f2f;
+    }
+}
+.gold-dk{
+    fill: #69512a;
+    -webkit-animation: 0.6s gold-dk-flash ease-in-out infinite;
+    animation: 0.6s gold-dk-flash ease-in-out infinite;
+}
+@-webkit-keyframes gold-dk-flash{
+    40%{
+        fill: #b28947;
+    }
+    80%{
+        fill: #69512a;
+    }
+}
+@keyframes gold-dk-flash{
+    40%{
+        fill: #b28947;
+    }
+    80%{
+        fill: #69512a;
+    }
+}
+.g1{
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+.g2{
+    -webkit-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+}
+.g3{
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+}
+/* Gift Container */
+.gifts {
+    position: absolute;
+    bottom: 50px; /* Adjust position near the snowman */
+    left: 50%; /* Center the stack horizontally */
+    transform: translateX(-50%); /* Ensure it stays centered */
+    display: flex;
+    flex-direction: column; /* Stack gifts vertically */
+    gap: 0px; /* Space between gifts */
+  }
+  
+  /* Individual Gift */
+  .gift {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+    bottom: 30px;
+    border: 2px solid #900; /* Slight border for a realistic effect */
+    border-radius: 5px; /* Slight rounding for box edges */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adding a shadow effect for depth */
+    transition: transform 0.3s ease; /* Smooth scale effect on hover */
+  }
+  
+  /* Gift Container */
+.gifts {
+    position: absolute;
+    bottom: -450px; /* Adjust position near the snowman */
+    left: 60%; /* Center the gifts container */
+    transform: translateX(-50%); /* Ensure the container is centered */
+    display: block;
+    width: 100%; /* Ensure the container takes full width */
+    height: 100%;
+    z-index: 2;
+  }
+  
+  /* Individual Gift */
+  .gift {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+    border: 2px solid #900;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adding a shadow effect for depth */
+    transition: transform 0.3s ease; /* Smooth scale effect on hover */
+  }
+  
+  /* Gift Hover Effect */
+  .gift:hover {
+    transform: scale(1.1); /* Slightly enlarge the gift on hover */
+  }
+  
+  /* Horizontal Ribbon */
+  .gift::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: white;
+    transform: translateY(-50%);
+  }
+  
+  /* Vertical Ribbon */
+  .gift::after {
+    content: "";
+    position: absolute;
+    left: 40%;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    background-color: white;
+    transform: translateX(-50%);
+  }
+  /* Candy Stick */
+.candy-stick {
+  position: absolute;
+  top: 650px; /* Adjust this to place it at the top of the stack */
+  left: 25%; /* Center align horizontally with the stack */
+  rotate: -50deg;
+  transform: translateX(-50%);
+  width: 20px; /* Width of the stick */
+  height: 100px; /* Height of the stick */
+  background: repeating-linear-gradient(
+    45deg,
+    red,
+    red 10px,
+    white 10px,
+    white 20px
+  );
+  border-radius: 10px 10px 0 0; /* Round top corners */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add depth */
+  z-index: 3; /* Ensure it appears above the gifts */
+}
+
+/* Candy Stick Curved Top */
+.candy-stick::before {
+  content: "";
+  position: absolute;
+  top: -30px; /* Adjust to form the curved hook */
+  left: -10px; /* Offset to align with the stick */
+  width: 40px; /* Width of the curve */
+  height: 40px; /* Height of the curve */
+  border-radius: 50%; /* Make it circular */
+  background: repeating-linear-gradient(
+    45deg,
+    red,
+    red 10px,
+    white 10px,
+    white 20px
+  );
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add depth */
+}
+ /* Twinkling Lights */
+
+/* Lights Container */
+.lights {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    position: fixed;
+    top: 50px; /* Adjust this to position lights at the desired height */
+    width: 100%;
+    pointer-events: none; /* So it doesn't interfere with interactions */
+  }
+  
+  /* Light Bulbs */
+  .bulb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: twinkle 1.5s infinite alternate;
+  }
+  
+  /* Bulb Colors */
+  .red {
+    background-color: red;
+  }
+  
+  .green {
+    background-color: green;
+  }
+  
+  .blue {
+    background-color: blue;
+  }
+  
+  .yellow {
+    background-color: yellow;
+  }
+  
+  /* Twinkling Animation */
+  @keyframes twinkle {
+    0% {
+      opacity: 0.5;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+  /* Container for Santa and text */
+.santa-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; /* Aligns text and image */
+  }
+  
+  /* Text Styling */
+  .santa-text {
+    font-family: 'Caveat', cursive; /* Stylish font */
+    font-size: 2.5rem; /* Medium-large size */
+    color: #080f0c; /* White text for contrast */
+    margin-bottom: 20px; /* Space between text and Santa image */
+    animation: fade-in 3s infinite alternate, glow 2s infinite; /* Animations */
+    text-shadow: 2px 2px 10px #f4e9e9; /* Glowing effect */
+  }
+  
+  /* Santa Image */
+  .santa-image {
+    width: 250px; /* Adjust size */
+    cursor: pointer;
+    animation: bounce 2s infinite;
+  }
+  
+  /* Keyframes for bouncing animation */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  /* Keyframes for fading in and out */
+  @keyframes fade-in {
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Keyframes for glowing effect */
+  @keyframes glow {
+    0% {
+      text-shadow: 2px 2px 5px #ff4d4d;
+    }
+    100% {
+      text-shadow: 2px 2px 20px #ff4d4d;
+    }
+  }
+
+  
+  
+  

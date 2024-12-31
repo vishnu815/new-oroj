@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santa Chariot Game</title>
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+  <!-- Start Game Red Circle Button -->
+  <div id="start-button" class="start-button">
+    Start Game
+  </div>
+
+  <!-- Game Container -->
+  <div class="game-container" style="display: none;">
+    <div class="chariot" id="chariot"></div>
+    <div class="obstacle" id="obstacle"></div>
+    <div class="score" id="score">Score: 0</div>
+    <button id="jump-button">Jump</button>
+  </div>
+
+  <!-- Santa Wish Dialog -->
+  <div class="wish-dialog" id="wish-dialog">
+    <div class="cloud">
+      <img src="assets/santa.png" alt="Santa" class="santa-image" />
+      <h2>Make a Wish!</h2>
+      <input type="text" id="wish-input" placeholder="Your wish..." />
+      <button id="submit-wish">Submit Wish</button>
+    </div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="background-music" loop>
+    <source src="assets/index-music.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const startButton = document.getElementById('start-button');
+    const gameContainer = document.querySelector('.game-container');
+    const backgroundMusic = document.getElementById('background-music');
+    const chariot = document.getElementById('chariot');
+    const obstacle = document.getElementById('obstacle');
+    const scoreDisplay = document.getElementById('score');
+    const jumpButton = document.getElementById('jump-button');
+    const wishDialog = document.getElementById('wish-dialog');
+    const submitWishButton = document.getElementById('submit-wish');
+    const wishInput = document.getElementById('wish-input');
+
+    let isJumping = false;
+    let score = 0;
+    let gameDuration = 45; // Game duration in seconds
+    let gameInterval, countdownInterval;
+
+    // Start the game and music when the Start Game button is clicked
+    startButton.addEventListener('click', function() {
+      // Play background music
+      backgroundMusic.play().catch(function(error) {
+        console.log("Audio playback failed: ", error); // Log error if playback fails
+      });
+
+      // Show the game container
+      gameContainer.style.display = 'block';
+      startButton.style.display = 'none'; // Hide the start button after it's clicked
+
+      // Start the game logic
+      startGame();
+    });
+
+    // Jump functionality
+    jumpButton.addEventListener('click', () => {
+      if (!isJumping) {
+        isJumping = true;
+        chariot.classList.add('jump');
+        setTimeout(() => {
+          chariot.classList.remove('jump');
+          isJumping = false;
+        }, 700); // Adjusted jump duration
+      }
+    });
+
+    // Collision detection to collect snowballs
+    function checkCollision() {
+      const chariotRect = chariot.getBoundingClientRect();
+      const obstacleRect = obstacle.getBoundingClientRect();
+
+      if (
+        chariotRect.right > obstacleRect.left &&
+        chariotRect.left < obstacleRect.right &&
+        chariotRect.bottom > obstacleRect.top &&
+        chariotRect.top < obstacleRect.bottom
+      ) {
+        collectSnowball();
+      }
+    }
+
+    // Handle collecting snowballs
+    function collectSnowball() {
+      score += 1; // Increase score
+      scoreDisplay.textContent = `Score: ${score}`;
+
+      // Reset snowball to a random position
+      obstacle.style.right = `${Math.random() * window.innerWidth}px`;
+      obstacle.style.bottom = `${Math.random() * (window.innerHeight - 200) + 100}px`;
+    }
+
+    // Timer functionality
+    function startTimer() {
+      let timeRemaining = gameDuration;
+      countdownInterval = setInterval(() => {
+        timeRemaining -= 1;
+
+        // End game when time reaches 0
+        if (timeRemaining <= 0) {
+          clearInterval(countdownInterval);
+          clearInterval(gameInterval);
+          endGame();
+        }
+      }, 1000); // Update every second
+    }
+
+    // End game and show wish box
+    function endGame() {
+      obstacle.style.animation = 'none'; // Stop the obstacle
+      chariot.style.animation = 'none'; // Stop the chariot
+      wishDialog.style.display = 'block'; // Show the wish dialog
+    }
+
+    // Handle wish submission
+    submitWishButton.addEventListener('click', () => {
+      const wish = wishInput.value;
+      if (wish) {
+        alert(`Your wish "${wish}" will be granted!`);
+      }
+      location.reload(); // Reload the game after submitting the wish
+    });
+
+    // Start the game logic
+    function startGame() {
+      // Start snowball movement after 45 seconds
+      setTimeout(() => {
+        obstacle.style.animation = 'moveObstacle 3s linear infinite, moveUpDown 2s ease-in-out infinite';
+        gameInterval = setInterval(checkCollision, 100); // Check collision every 100ms
+      }, 1000); // Delay for 1 second to sync with countdown
+
+      startTimer(); // Start the timer
+    }
+  </script>
+
+</body>
+</html>
